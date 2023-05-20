@@ -109,3 +109,13 @@ function revealMines() {
         }
     }
 }
+
+function checkTile(r, c) {
+    if (r < 0 || r >= rows || c < 0 || c >= columns) {
+        return 0;
+    }
+    if (minesLocation.includes(r.toString() + "-" + c.toString())) {
+        return 1;
+    }
+    return 0;
+}
