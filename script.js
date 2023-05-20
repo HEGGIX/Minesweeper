@@ -97,3 +97,15 @@ function clickTile() {
     checkMine(r, c);
 
 }
+
+function revealMines() {
+    for (let r= 0; r < rows; r++) {
+        for (let c = 0; c < columns; c++) {
+            let tile = board[r][c];
+            if (minesLocation.includes(tile.id)) {
+                tile.innerText = "💣";
+                tile.style.backgroundColor = "red";                
+            }
+        }
+    }
+}
