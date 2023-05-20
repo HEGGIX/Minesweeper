@@ -57,3 +57,44 @@ function startGame() {
 
     console.log(board);
 }
+
+function setFlag() {
+    if (flagEnabled) {
+        flagEnabled = false;
+        flag.style.backgroundColor = "lightgray";
+    }
+    else {
+        flagEnabled = true;
+        flag.style.backgroundColor = "darkgray";
+    }
+}
+
+function clickTile() {
+    if (gameOver || this.classList.contains("tile-clicked")) {
+        return;
+    }
+
+    let tile = this;
+    if (flagEnabled) {
+        if (tile.innerText == "") {
+            tile.innerText = "🚩";
+        }
+        else if (tile.innerText == "🚩") {
+            tile.innerText = "";
+        }
+        return;
+    }
+
+    if (minesLocation.includes(tile.id)) {
+        gameOver = true;
+        revealMines();
+        return;
+    }
+
+
+    let coords = tile.id.split("-");
+    let r = parseInt(coords[0]);
+    let c = parseInt(coords[1]);
+    checkMine(r, c);
+
+}
