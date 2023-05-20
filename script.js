@@ -38,7 +38,6 @@ function setMines() {
 
 
 function startGame() {
-    document.getElementById("mines-count").innerText = minesCount;
     flag.addEventListener("click", setFlag);
     setMines();
 
