@@ -133,6 +133,27 @@ function checkMine(r, c) {
     minesFound += checkTile(r+1, c-1);      
     minesFound += checkTile(r+1, c);        
     minesFound += checkTile(r+1, c+1); 
+
+    if (minesFound > 0) {
+        board[r][c].innerText = minesFound;
+        board[r][c].classList.add("x" + minesFound.toString());
+    }
+    else {
+        checkMine(r-1, c-1);    
+        checkMine(r-1, c);      
+        checkMine(r-1, c+1);    
+
+        checkMine(r, c-1);      
+        checkMine(r, c+1);      
+
+        checkMine(r+1, c-1);    
+        checkMine(r+1, c);      
+        checkMine(r+1, c+1);    
+    }
+
+    if (tilesClicked == rows * columns - minesCount) {
+        gameOver = true;
+    }
 }
 
 function checkTile(r, c) {
